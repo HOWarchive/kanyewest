@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YANDHI</title>
+  <title>YE</title> <!-- 🔸 사이트 제목 -->
   <link rel="icon" type="image/png" href="favicon.png" />
   <style>
     html, body {
@@ -27,21 +27,17 @@
 <body>
   <img src="yandhi.gif" alt="YANDHI" />
 
-  <!-- BGM 자동재생 -->
+  <!-- 🎧 배경음악 자동재생 (랜덤) -->
   <audio id="bgm" autoplay loop></audio>
 
   <script>
-    // 사용할 음원 리스트
-    const bgmFiles = ["song1.mp3", "song2.mp3", "song3.mp3"]; // 이 파일들을 함께 업로드해야 함
-
-    // 랜덤 선택
-    const randomIndex = Math.floor(Math.random() * bgmFiles.length);
+    const bgmFiles = ["song1.mp3", "song2.mp3", "song3.mp3"]; // 🎵 여기에 mp3 파일 이름 3개 입력
+    const randomSong = bgmFiles[Math.floor(Math.random() * bgmFiles.length)];
     const bgm = document.getElementById("bgm");
-    bgm.src = bgmFiles[randomIndex];
+    bgm.src = randomSong;
     bgm.load();
     bgm.play().catch(() => {
-      // 일부 브라우저는 자동재생을 차단함 → 사용자 상호작용 시 재생하도록 설정 가능
-      console.log("자동 재생 차단됨. 클릭 시 재생됨.");
+      // 자동재생 차단 대비: 클릭 시 재생
       document.body.addEventListener("click", () => {
         bgm.play();
       }, { once: true });
