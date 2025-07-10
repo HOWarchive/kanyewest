@@ -41,7 +41,7 @@
 
   <script>
     /******** 1) 랜덤 곡 로드 ********/
-    const playlist = ["song1.mp3", "song2.mp3", "song3.mp3"];   // ← mp3 파일 3개
+    const playlist = ["song1.mp3", "song1.mp3", "song1.mp3"];   // ← mp3 파일 3개
     const bgm       = document.getElementById("bgm");
     bgm.src         = playlist[Math.floor(Math.random()*playlist.length)];
     bgm.load();
