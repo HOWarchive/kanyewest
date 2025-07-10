@@ -32,21 +32,24 @@
   </style>
 </head>
 <body>
+  <!-- 중앙 정렬된 이미지 -->
   <img src="yandhi.gif" alt="YANDHI"
        oncontextmenu="return false;"
        draggable="false"
        style="pointer-events: none; user-select: none; -webkit-user-drag: none;" />
+
+  <!-- 브금 오디오 -->
   <audio id="bgm" autoplay loop></audio>
 
   <script>
-    // 뷰포트 높이를 동적으로 계산해서 body에 적용 (모바일 WebView 대응)
+    // 이미지 뷰포트 높이 보정
     function setRealHeight() {
       document.body.style.height = `${window.innerHeight}px`;
     }
     setRealHeight();
     window.addEventListener('resize', setRealHeight);
 
-    // 브금 재생
+    // 브금 랜덤 재생
     const bgmFiles = ["song1.mp3", "song2.mp3", "song3.mp3"];
     const bgm = document.getElementById("bgm");
     bgm.src = bgmFiles[Math.floor(Math.random() * bgmFiles.length)];
