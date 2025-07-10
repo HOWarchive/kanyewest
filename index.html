@@ -4,18 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>YE</title>
-  <link rel="icon" type="image/x-icon" href="favicon.ico" />
-   <style>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta property="og:title" content="YE" />
+  <meta property="og:description" content="Wake Up Mr. West" />
+  <meta property="og:image" content="https://www.kanyewest.co.kr/preview.jpg" />
+  <meta property="og:url" content="https://www.kanyewest.co.kr" />
+  <meta property="og:type" content="website" />
+
+  <style>
     html, body {
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
       background-color: #fbfbfb;
       overflow: hidden;
+    }
+    body {
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 100vh; /* fallback */
     }
     img {
       max-width: 100vw;
@@ -23,28 +30,25 @@
       object-fit: contain;
     }
   </style>
-
-  <!-- Open Graph (SNS 공유용 미리보기 정보) -->
-  <meta property="og:title" content="YE" />
-  <meta property="og:description" content="Wake Up Mr. West" />
-  <meta property="og:image" content="https://www.kanyewest.co.kr/preview.jpg" />
-  <meta property="og:url" content="https://www.kanyewest.co.kr" />
-  <meta property="og:type" content="website" />
 </head>
 <body>
   <img src="yandhi.gif" alt="YANDHI" />
-
-  <!-- 🎧 배경음악 자동재생 (랜덤) -->
   <audio id="bgm" autoplay loop></audio>
 
   <script>
-    const bgmFiles = ["song1.mp3", "song2.mp3", "song3.mp3"]; // 🎵 여기에 mp3 파일 이름 3개 입력
-    const randomSong = bgmFiles[Math.floor(Math.random() * bgmFiles.length)];
+    // 뷰포트 높이를 동적으로 계산해서 body에 적용 (모바일 WebView 대응)
+    function setRealHeight() {
+      document.body.style.height = `${window.innerHeight}px`;
+    }
+    setRealHeight();
+    window.addEventListener('resize', setRealHeight);
+
+    // 브금 재생
+    const bgmFiles = ["song1.mp3", "song2.mp3", "song3.mp3"];
     const bgm = document.getElementById("bgm");
-    bgm.src = randomSong;
+    bgm.src = bgmFiles[Math.floor(Math.random() * bgmFiles.length)];
     bgm.load();
     bgm.play().catch(() => {
-      // 자동재생 차단 대비: 클릭 시 재생
       document.body.addEventListener("click", () => {
         bgm.play();
       }, { once: true });
